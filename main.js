@@ -2,7 +2,7 @@ const CryptoTS = require("crypto-ts");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const url = require("url");
-require("dotenv").config();
+require("dotenv").config({path: __dirname + '/.env'});
 
 const homePage = process.env.GREYTHR_HOMEPAGE_URI;
 const email = process.env.SLACK_EMAIL;
@@ -33,13 +33,7 @@ let sessionStorage = {
 
 // this gets the homepage, used to generate a jsession id
 axios
-  .get(homePage)
-  .then((res) => {
-    jsessionCookie = res.headers["set-cookie"][0].split(";");
-    data["jsession"] = jsessionCookie[0];
-    // this gets the cdata like encryption key and access id
-    return axios.get(`${homePage}/uas/portal/auth/login`);
-  })
+  .get(`${homePage}/uas/portal/auth/login`)
   .then((res) => {
     const $ = cheerio.load(res.data);
     script = $("head script");

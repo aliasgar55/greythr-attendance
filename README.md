@@ -1,5 +1,5 @@
-A greythr attendance script to login and logout in grethr using node js
-the script uses greythr apis instead of a browser
+# A greythr attendance script to login and logout in grethr using node js
+> the script uses greythr apis instead of a browser
 # greythr-attendance
 ### Steps to setup/installation
 1. Make sure you have node
